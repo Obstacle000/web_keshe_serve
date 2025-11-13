@@ -1,0 +1,31 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: jigsaw
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://202.194.14.120:3306/java_2_19?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+    username: java_2_19
+    password: JavaP219@
+
+
+
+
+
+alioss:
+  endpoint: oss-cn-beijing.aliyuncs.com
+  access-key-id: ${OSS_ACCESS_KEY_ID}
+  access-key-secret: ${OSS_ACCESS_KEY_SECRET}
+  bucket-name: webkeshe
+
+mybatis-plus:
+  type-aliases-package: com.xuexian.webkeshe.entity
+
+logging:
+  level:
+    com.hmdp: debug
+
+
