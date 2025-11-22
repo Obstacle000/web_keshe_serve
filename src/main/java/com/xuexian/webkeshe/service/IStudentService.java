@@ -1,6 +1,7 @@
 package com.xuexian.webkeshe.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.xuexian.webkeshe.dto.PageDTO;
 import com.xuexian.webkeshe.entity.Student;
 import com.xuexian.webkeshe.entity.User;
@@ -12,7 +13,7 @@ import java.util.List;
 
 import static com.baomidou.mybatisplus.extension.toolkit.Db.page;
 
-public interface IStudentService {
+public interface IStudentService extends IService<Student> {
 
     PageVO<Student> getStudentList(PageDTO pageDTO);
 

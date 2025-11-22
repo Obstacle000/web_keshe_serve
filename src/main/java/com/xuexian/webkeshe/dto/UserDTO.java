@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class UserDTO {
-    private Long id;
+    private Integer id;
     private String nickName;
     private List<String> roles;
 

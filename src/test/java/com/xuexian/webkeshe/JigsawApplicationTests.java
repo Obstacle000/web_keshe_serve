@@ -14,7 +14,7 @@ class WebkesheApplicationTests {
 
     @Test
     void contextLoads() {
-        System.out.println(passwordEncoder.encode("123456"));
+        System.out.println(passwordEncoder.matches("123456", "tgy6b2yfuxbsbk6lbf4k@bda56fdf3aa5ee80c45612e6f47e439a"));
     }
 
 

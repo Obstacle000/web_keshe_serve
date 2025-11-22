@@ -42,6 +42,11 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
     @Autowired
     private StudentMapper studentMapper;
 
+    @Autowired
+    private RoleMapper roleMapper;
+    @Autowired
+    private UserRoleMapper userRoleMapper;
+
 
     @Override
     public PageVO<Student> getStudentList(PageDTO pageDTO) {
@@ -80,6 +85,7 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
     @Transactional(rollbackFor = Exception.class)
     public Result addStu(Student student) {
 
+
         if (student == null || student.getName() == null || student.getStuId() == null) {
             return Result.error("学生信息不完整");
         }
@@ -93,10 +99,7 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
         student.setCreateTime(LocalDateTime.now());
         student.setUpdateTime(LocalDateTime.now());
 
-        boolean save = this.save(student);
-        if (!save) {
-            return Result.error("添加学生失败");
-        }
+
 
 
 
@@ -167,9 +170,24 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
 
         user.setUserName(stuId);
 
+
+
         userService.save(user);
+        student.setUserId(user.getId());
+
+        boolean save = this.save(student);
+        if (!save) {
+            return Result.error("添加学生失败");
+        }
+
+        assignRole(user.getId(),"STUDENT");
 
         return Result.success(REQUEST_SUCCESS,"学生添加成功");
 
+    }
+    public void assignRole(Integer userId, String roleName) {
+
+        Integer roleId = roleMapper.selectRoleIdByName(roleName);
+        userRoleMapper.insertUserRole(userId, roleId);
     }
 }

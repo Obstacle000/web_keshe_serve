@@ -37,7 +37,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
 
 
-    public void assignRole(Long userId, String roleName) {
+    public void assignRole(Integer userId, String roleName) {
 
         Integer roleId = roleMapper.selectRoleIdByName(roleName);
         userRoleMapper.insertUserRole(userId, roleId);
@@ -89,7 +89,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             // 更新角色
             userRoleMapper.deleteByUserId(userId); // 删除旧角色权限
             try{
-                assignRole(Long.valueOf(userId), role);
+                assignRole(userId, role);
 
             }catch (Exception e){
                 e.printStackTrace();

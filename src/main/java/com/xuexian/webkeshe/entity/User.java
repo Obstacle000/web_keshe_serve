@@ -24,7 +24,7 @@ public class User implements Serializable {
 
     @TableId(value = "id", type = IdType.AUTO)
     @Schema(description = "用户ID（主键）", example = "1001")
-    private Long id;
+    private Integer id;
 
     @Schema(description = "用户名", example = "zhangsan")
     private String userName;

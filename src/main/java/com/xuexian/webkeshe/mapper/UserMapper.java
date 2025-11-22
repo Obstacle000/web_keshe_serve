@@ -22,4 +22,13 @@ public interface UserMapper extends BaseMapper<User> {
 """)
     void disableUsersByStudentIds(@Param("ids") String ids);
 
+    @Update("""
+    UPDATE user 
+    SET status = 0 
+    WHERE user_name IN (
+        SELECT teacher_id FROM teacher WHERE id IN (${ids})
+    )
+""")
+    void disableUsersByTeacherIds(@Param("ids") String ids);
+
 }
