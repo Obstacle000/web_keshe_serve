@@ -39,7 +39,7 @@ public class JwtInterceptor implements HandlerInterceptor {
             UserDTO user = new UserDTO(
                     Integer.parseInt(claims.getId()),
                     claims.getSubject(),
-                    claims.get("roles", List.class)
+                    claims.get("role", Integer.class)
             );
             UserHolder.saveUser(user);
             return true;

@@ -11,15 +11,12 @@ import java.util.List;
 public class UserDTO {
     private Integer id;
     private String nickName;
-    private List<String> roles;
+    private Integer role;
 
-    /** 判断是否管理员 */
-    public boolean isAdmin() {
-        return roles != null && roles.contains("ADMIN");
-    }
+
 
     /** 安全获取角色列表，避免 roles 为 null */
-    public List<String> getRoles() {
-        return roles != null ? roles : Collections.emptyList();
+    public Integer getRoles() {
+        return role;
     }
 }

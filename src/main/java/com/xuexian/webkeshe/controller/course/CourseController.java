@@ -1,9 +1,11 @@
 package com.xuexian.webkeshe.controller.course;
 
 import com.xuexian.webkeshe.dto.CourseDTO;
+import com.xuexian.webkeshe.dto.UserDTO;
 import com.xuexian.webkeshe.dto.getCourseDTO;
 import com.xuexian.webkeshe.entity.Course;
 import com.xuexian.webkeshe.service.ICourseService;
+import com.xuexian.webkeshe.util.UserHolder;
 import com.xuexian.webkeshe.vo.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,11 @@ public class CourseController {
 
     @PostMapping("/addCourse")
     public Result addCourse(@RequestBody CourseDTO courseDTO) {
+        UserDTO user = UserHolder.getUser();
+        if(user.getRole()!= 2){
+            return Result.error("权限不足");
+        }
+
         return courseService.addCourse(courseDTO);
     }
 

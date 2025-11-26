@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.List;
 
 import static com.xuexian.webkeshe.util.Code.*;
 
@@ -60,13 +61,10 @@ public class AuthController {
             return Result.error(PASSWORD_ERROR, "密码错误");
         }
 
-//        List<String> roles = userService.getUserRoles(user.getId());
-//        if (roles.isEmpty()) {
-//            roles = List.of("USER");
-//        }
+        User u = userService.query().eq("user_name", loginForm.getUserName()).one();
 
-        UserDTO userDTO = new UserDTO(user.getId(), user.getUserName(), null);
-        userDTO.setRoles(Collections.singletonList(roleMapper.selectRoleByRoleId(user.getUserType()).getRoleName()));
+        UserDTO userDTO = new UserDTO(user.getId(), user.getUserName(), u.getUserType());
+        userDTO.setRole(u.getUserType());
 
         String jwt = JwtUtil.generateToken(user.getId(), user.getUserName(), userDTO.getRoles());
         log.info("jwt:{}", jwt);

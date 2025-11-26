@@ -71,6 +71,7 @@ public class BaseController {
 
     @GetMapping("/getAllCollege")
     public Result getAllCollege() {
+
         List<College> all = null;
         try {
             all = collegeMapper.findAll();
