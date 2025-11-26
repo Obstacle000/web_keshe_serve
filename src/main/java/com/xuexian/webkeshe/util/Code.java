@@ -7,6 +7,7 @@ public class Code {
     public static final Integer NO_GRANTED = -10;// 权限不够
     public static final Integer SYSTEM_UNKNOWN_ERR = -1;// 系统未知错误
     public static final Integer COURSE_SELECTED = -200;// 系统未知错误
+    public static final Integer COURSE_NOT_EXIT = -201;// 系统未知错误
     public static final Integer CLASSIFICATION_NOT_EXIST = -10002;// 该分类不存在
     public static final Integer JIGSAW_NOT_EXIST = -10003;// 该拼图不存在
 

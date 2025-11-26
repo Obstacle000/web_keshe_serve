@@ -23,6 +23,11 @@ public class TeacherController {
         return Result.success(REQUEST_SUCCESS,teacherService.getTeacherList(pageDTO));
     }
 
+    @GetMapping("/getTeacherList")
+    public Result getTeacherList() {
+        return Result.success(REQUEST_SUCCESS,teacherService.getTeacherList());
+    }
+
 
     @PostMapping("/addTeacher")
     public Result addTeacher(@RequestBody Teacher teacher) {

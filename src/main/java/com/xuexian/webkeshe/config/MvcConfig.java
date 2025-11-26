@@ -28,7 +28,8 @@ public class MvcConfig implements WebMvcConfigurer {
                         "/api/getRoleList",
                         "/api/getAllCollege",
                         "/api/getSpecialtyByCollege",
-                        "/api/getClassBySpecialty");
+                        "/api/getClassBySpecialty",
+                        "/api/getTeacherList");
     }
 
 }

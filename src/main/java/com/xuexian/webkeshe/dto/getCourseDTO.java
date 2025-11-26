@@ -4,7 +4,9 @@ import lombok.Data;
 
 @Data
 public class getCourseDTO {
-    private Integer  collegeId;
+    private Integer collegeId;
     private PageDTO page;
-    private String name;
+    private String courseName;
+    private String courseCode;
 }
+

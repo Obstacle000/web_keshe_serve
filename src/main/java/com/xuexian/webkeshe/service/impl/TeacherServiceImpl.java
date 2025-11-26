@@ -73,6 +73,16 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
     }
 
     @Override
+    public Result getTeacherList() {
+        List<Teacher> all = teacherMapper.findAll();
+        all.forEach(teacher -> {
+            teacher.setCollegeName("");
+            teacher.setSpecialtyName("");
+        });
+        return Result.success(REQUEST_SUCCESS, all);
+    }
+
+    @Override
     public Result addTeacher(Teacher teacher) {
         if (teacher == null || teacher.getName() == null || teacher.getTeacherId() == null) {
             return Result.error("教师信息不完整");
