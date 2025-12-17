@@ -1,6 +1,7 @@
 package com.xuexian.webkeshe.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.core.metadata.TableFieldInfo;
 import lombok.Data;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -20,13 +21,20 @@ public class ClassInfo implements Serializable {
 
     /** 所属专业ID */
     private Integer specialtyId;
+    @TableField(exist = false)
+    private String specialtyName;
 
-    /** 班主任教师ID（可选） */
-    private Integer teacherId;
+    private String grade;
+
+
+
+
 
     /** 创建时间 */
     private LocalDateTime createTime;
 
     /** 更新时间 */
     private LocalDateTime updateTime;
+
+
 }

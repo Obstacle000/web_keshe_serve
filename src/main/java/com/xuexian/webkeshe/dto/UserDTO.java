@@ -15,6 +15,7 @@ public class UserDTO {
 
 
 
+
     /** 安全获取角色列表，避免 roles 为 null */
     public Integer getRoles() {
         return role;

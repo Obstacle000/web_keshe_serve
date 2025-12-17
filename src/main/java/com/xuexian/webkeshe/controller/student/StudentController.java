@@ -3,9 +3,11 @@ package com.xuexian.webkeshe.controller.student;
 
 import com.xuexian.webkeshe.dto.IdsDTO;
 import com.xuexian.webkeshe.dto.PageDTO;
+import com.xuexian.webkeshe.dto.UserDTO;
 import com.xuexian.webkeshe.entity.Student;
 import com.xuexian.webkeshe.service.IStudentService;
 
+import com.xuexian.webkeshe.util.UserHolder;
 import com.xuexian.webkeshe.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -45,18 +47,30 @@ public class StudentController {
      */
     @PostMapping("/addStu")
     public Result addStu(@RequestBody Student student) {
+        UserDTO user = UserHolder.getUser();
+        if(user.getRole()!= 2||user.getRole()!= 3){
+            return Result.error("权限不足");
+        }
 
         return studentService.addStu(student);
     }
 
     @PostMapping("/delStu")
     public Result deleteStudents(@RequestBody IdsDTO ids) {
+        UserDTO user = UserHolder.getUser();
+        if(user.getRole()!= 2||user.getRole()!= 3){
+            return Result.error("权限不足");
+        }
         studentService.removeBatchByIds(ids.getIds());
         return Result.success(REQUEST_SUCCESS,null);
     }
 
     @PostMapping("/updateStu")
     public Result updateStu(@RequestBody Student student) {
+        UserDTO user = UserHolder.getUser();
+        if(user.getRole()!= 2||user.getRole()!= 3){
+            return Result.error("权限不足");
+        }
 
         return studentService.updateStu(student);
     }

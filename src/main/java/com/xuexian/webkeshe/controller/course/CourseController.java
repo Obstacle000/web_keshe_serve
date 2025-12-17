@@ -25,6 +25,10 @@ public class CourseController {
 
     @PostMapping("/selectCourse")
     public Result selectCourse(Integer courseId){
+        Integer role = UserHolder.getUser().getRole();
+        if(role != 1){
+            return Result.error("只有学生才能选课");
+        }
         return courseService.selectCourse(courseId);
 
     }

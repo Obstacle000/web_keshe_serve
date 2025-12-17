@@ -6,6 +6,7 @@ import com.xuexian.webkeshe.dto.UpdateStaDTO;
 
 import com.xuexian.webkeshe.dto.UserDTO;
 import com.xuexian.webkeshe.entity.College;
+import com.xuexian.webkeshe.entity.Specialty;
 import com.xuexian.webkeshe.entity.User;
 import com.xuexian.webkeshe.mapper.ClassMapper;
 import com.xuexian.webkeshe.mapper.CollegeMapper;
@@ -84,6 +85,17 @@ public class BaseController {
     @PostMapping("/getSpecialtyByCollege")
     public Result getSpecialtyByCollege(Integer id) {
         return Result.success(REQUEST_SUCCESS,specialtyMapper.findAll(id));
+    }
+
+    @PostMapping("/getSpecialtyList")
+    public Result getSpecialtyList(Integer id) {
+        List<Specialty> all = null;
+        try {
+            all = specialtyMapper.getList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Result.success(REQUEST_SUCCESS,all);
     }
 
     @PostMapping("/getClassBySpecialty")

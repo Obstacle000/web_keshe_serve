@@ -50,19 +50,21 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
 
         // 获取筛选条件
         Integer collegeId = courseDTO.getCollegeId();
-        String name = courseDTO.getCourseName();
-        String code = courseDTO.getCourseCode();
+        String name = courseDTO.getName();
+
 
         // 构造查询条件
         QueryWrapper<Course> query = new QueryWrapper<>();
         if (collegeId != null) {
             query.eq("college_id", collegeId);
         }
+        // 关键:or
         if (name != null && !name.isEmpty()) {
-            query.like("course_name", name);
-        }
-        if (code != null && !code.isEmpty()) {
-            query.like("course_code", code);
+            query.and(q -> q
+                    .like("course_name", name)
+                    .or()
+                    .like("course_code", name)
+            );
         }
 
 

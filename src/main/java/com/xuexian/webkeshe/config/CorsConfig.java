@@ -12,7 +12,7 @@ public class CorsConfig implements WebMvcConfigurer {
     // 就是Spring Boot CORS 配置冲突,幸好用postman了,有报错信息
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")              // 匹配所有接口
-                .allowedOrigins("http://localhost:8080") // 允许前端地址访问
+                .allowedOrigins("http://localhost:3000") // 允许前端地址访问
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // 允许请求方法
                 .allowCredentials(true)         // 允许携带 cookie
                 .allowedHeaders("*");           // 允许所有请求头
